@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: application.CyclingStatisticsTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.45 s <<< FAILURE! - in application.CyclingStatisticsTest
+onlyBarChart(application.CyclingStatisticsTest)  Time elapsed: 1.029 s  <<< FAILURE!
+java.lang.AssertionError: Make sure you changed the LineChart object to a BarChart object. Now a BarChart object could not be found in the GridPane layout.
+	at application.CyclingStatisticsTest.onlyBarChart(CyclingStatisticsTest.java:89)
+
+noLineCharts(application.CyclingStatisticsTest)  Time elapsed: 0.362 s  <<< FAILURE!
+java.lang.AssertionError: The string 'LineChart' should not appear in the file 'CyclingStatisticsApplication.java'. Now it appeared at least 2 times. expected:<0> but was:<2>
+	at application.CyclingStatisticsTest.noLineCharts(CyclingStatisticsTest.java:60)
+
