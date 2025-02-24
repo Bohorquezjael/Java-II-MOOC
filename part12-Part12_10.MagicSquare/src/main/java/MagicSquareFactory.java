@@ -17,9 +17,7 @@ public class MagicSquareFactory {
         int number = 1;
         
         while(this.freePositions-- > 0){
-            if(this.square.readValue(posY, posX) == 0){
-                square.placeValue(this.posY, this.posX, number++);
-            }
+            square.placeValue(this.posY, this.posX, number++);
             validatePosition();
         }
         return this.square;
