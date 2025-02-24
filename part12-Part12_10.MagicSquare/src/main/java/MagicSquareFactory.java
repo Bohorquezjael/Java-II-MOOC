@@ -1,36 +1,48 @@
 
 public class MagicSquareFactory {
+    private MagicSquare square;
+    int posX;
+    int posY;
+    int freePositions;
+    
+    public void initializeSquare(int size){
+        this.square = new MagicSquare(size);
+        this.freePositions = size * size;
+        this.posX = 0;
+        this.posY = size / 2;
+    }
 
     public MagicSquare createMagicSquare(int size) {
-        MagicSquare square = new MagicSquare(size);
-        int freePositions = size * size;
+        this.initializeSquare(size);
         int number = 1;
-        int posX = 0;
-        int posY = size / 2;
         
-        while(freePositions-- > 0){
-            if(!isValidPosition(posX, posY, size)){
-                posX = size - 2;
-                posY --;
+        while(this.freePositions-- > 0){
+            if(this.square.readValue(posY, posX) == 0){
+                square.placeValue(this.posY, this.posX, number++);
             }
-            
-            if(isFreePosition(posY, posX, square)){
-                square.placeValue(posY, posX, number++);
-                posX += size - 1;
-                posY ++;
-            }
+            validatePosition();
         }
-        return square;
+        return this.square;
     }
-    
-    private boolean isValidPosition(int posX, int posY, int size){
-        return posX < size && posY < size;
-    }
-    
-    private boolean isFreePosition(int posX, int posY, MagicSquare ms){
-        return ms.readValue(posY, posX) != - 1;
-    }
-    
-    
 
+    private void validatePosition() {
+        int posXActual = this.posX;
+        int posYActual = this.posY;
+        
+        this.posX += this.square.getHeight() - 1;
+        this.posY ++;
+        
+        if(this.posX >= this.square.getHeight()){
+            this.posX -= this.square.getHeight();
+        }
+        
+        if(this.posY >= this.square.getHeight()){
+            this.posY = 0;
+        }
+        
+        if(this.square.readValue(posY, posX) > 0){
+            this.posX = ++posXActual;
+            this.posY = posYActual;
+        }
+    }
 }
